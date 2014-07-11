@@ -160,6 +160,13 @@
     
     // UPDATE SUBVIEWS BELOW CAMERA VIEW
     
+    if (recognizer.view.frame.origin.y <= self.view.frame.origin.y) {
+        // @TODO: only do this once depending on which view is on top - boolean
+        [self.view insertSubview:self.settingsTableViewController.view aboveSubview:self.friendsTableViewController.view];
+    } else {
+        [self.view insertSubview:self.friendsTableViewController.view aboveSubview:self.settingsTableViewController.view];
+    }
+    
 }
 
 

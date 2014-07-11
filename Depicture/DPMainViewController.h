@@ -11,6 +11,7 @@
 #import "DPCameraView.h"
 #import <AVFoundation/AVFoundation.h>
 #import "DPSettingsTableViewController.h"
+#import <POP/POP.h>
 
 @interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate>
 
