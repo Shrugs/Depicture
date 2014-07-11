@@ -10,12 +10,17 @@
 
 @implementation DPUser
 
-@synthesize username, identifier;
+@synthesize username, identifier, friends;
 
 +(DPUser *) thisUser
 {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [[DPUser alloc] initWithIdentifier:[userDefaults objectForKey:@"identifier"] andUsername:[userDefaults objectForKey:@"username"]];
+    static DPUser *thisUserSingleton = nil;
+    if (thisUserSingleton == nil) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//        thisUserSingleton = [[self alloc] initWithIdentifier:[userDefaults objectForKey:@"identifier"] andUsername:[userDefaults objectForKey:@"username"]];
+        thisUserSingleton = [[self alloc] initWithIdentifier:@"+5046168294" andUsername:@"matt"];
+    }
+    return thisUserSingleton;
 }
 
 -(DPUser *) initWithIdentifier:(NSString *)identifier andUsername:(NSString *)username
@@ -24,6 +29,7 @@
     if (self) {
         self.username = username;
         self.identifier = identifier;
+        self.friends = @[@"pf", @"shrugs", @"test"];
     }
     return self;
 }

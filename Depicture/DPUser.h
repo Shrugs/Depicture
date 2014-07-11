@@ -14,5 +14,6 @@
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, strong) NSArray *friends;
 
 @end
