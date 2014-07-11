@@ -22,6 +22,7 @@
 		C9A769C5196FCF1C00C0F34F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A9196FCF1C00C0F34F /* CoreData.framework */; };
 		C9A769CD196FCF1C00C0F34F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9A769CB196FCF1C00C0F34F /* InfoPlist.strings */; };
 		C9A769CF196FCF1C00C0F34F /* DepictureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A769CE196FCF1C00C0F34F /* DepictureTests.m */; };
+		C9A769DA196FD30800C0F34F /* DPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A769D9196FD30800C0F34F /* DPUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		C9A769CA196FCF1C00C0F34F /* DepictureTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DepictureTests-Info.plist"; sourceTree = "<group>"; };
 		C9A769CC196FCF1C00C0F34F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9A769CE196FCF1C00C0F34F /* DepictureTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DepictureTests.m; sourceTree = "<group>"; };
+		C9A769D8196FD30800C0F34F /* DPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPUser.h; sourceTree = "<group>"; };
+		C9A769D9196FD30800C0F34F /* DPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				C9A769BA196FCF1C00C0F34F /* Images.xcassets */,
 				C9A769B7196FCF1C00C0F34F /* Depicture.xcdatamodeld */,
 				C9A769AC196FCF1C00C0F34F /* Supporting Files */,
+				C9A769D8196FD30800C0F34F /* DPUser.h */,
+				C9A769D9196FD30800C0F34F /* DPUser.m */,
 			);
 			path = Depicture;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 			files = (
 				C9A769B6196FCF1C00C0F34F /* DPAppDelegate.m in Sources */,
 				C9A769B2196FCF1C00C0F34F /* main.m in Sources */,
+				C9A769DA196FD30800C0F34F /* DPUser.m in Sources */,
 				C9A769B9196FCF1C00C0F34F /* Depicture.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
