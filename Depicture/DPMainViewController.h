@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "DPFriendsTableViewController.h"
+#import "DPCameraView.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface DPMainViewController : UIViewController
+@interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) DPFriendsTableViewController *friendsTableViewController;
+@property (nonatomic, strong) DPCameraView *cameraView;
+@property (nonatomic, strong) AVCaptureStillImageOutput *cameraOutput;
+@property(nonatomic, strong) UIImageView *cameraOutputView;
 
 @end

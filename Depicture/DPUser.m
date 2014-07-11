@@ -23,12 +23,12 @@
     return thisUserSingleton;
 }
 
--(DPUser *) initWithIdentifier:(NSString *)identifier andUsername:(NSString *)username
+-(DPUser *) initWithIdentifier:(NSString *)iden andUsername:(NSString *)uname
 {
     self = [super init];
     if (self) {
-        self.username = username;
-        self.identifier = identifier;
+        self.username = uname;
+        self.identifier = iden;
         self.friends = @[@"pf", @"shrugs", @"test"];
     }
     return self;
