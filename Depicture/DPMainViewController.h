@@ -10,6 +10,7 @@
 #import "DPFriendsTableViewController.h"
 #import "DPCameraView.h"
 #import <AVFoundation/AVFoundation.h>
+#import "DPSettingsTableViewController.h"
 
 @interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate>
 
@@ -17,5 +18,6 @@
 @property (nonatomic, strong) DPCameraView *cameraView;
 @property (nonatomic, strong) AVCaptureStillImageOutput *cameraOutput;
 @property(nonatomic, strong) UIImageView *cameraOutputView;
+@property (nonatomic, strong) DPSettingsTableViewController *settingsTableViewController;
 
 @end

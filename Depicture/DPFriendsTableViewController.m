@@ -18,6 +18,8 @@
 
 static NSString *cellIdentifier = @"friendCell";
 
+static int yOffset = 100;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -32,6 +34,9 @@ static NSString *cellIdentifier = @"friendCell";
         
         // CONFIGURE CELL
         [self.tableView registerClass:[DPFriendCell class] forCellReuseIdentifier:cellIdentifier];
+        
+        // ADD FRAME OFFSET
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, [UIScreen mainScreen].bounds.size.height-yOffset);
     }
     return self;
 }

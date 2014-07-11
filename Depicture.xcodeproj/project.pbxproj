@@ -29,6 +29,8 @@
 		C9A76A2B196FE18700C0F34F /* DPCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A2A196FE18700C0F34F /* DPCameraView.m */; };
 		C9A76A2D196FE34C00C0F34F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A76A2C196FE34C00C0F34F /* CoreVideo.framework */; };
 		C9A76A2F196FE35500C0F34F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A76A2E196FE35500C0F34F /* AVFoundation.framework */; };
+		C9A76A33196FEB7400C0F34F /* DPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A32196FEB7400C0F34F /* DPSettingsTableViewController.m */; };
+		C9A76A36196FEC4C00C0F34F /* DPSettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A35196FEC4C00C0F34F /* DPSettingsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,10 @@
 		C9A76A2A196FE18700C0F34F /* DPCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCameraView.m; sourceTree = "<group>"; };
 		C9A76A2C196FE34C00C0F34F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C9A76A2E196FE35500C0F34F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C9A76A31196FEB7400C0F34F /* DPSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPSettingsTableViewController.h; sourceTree = "<group>"; };
+		C9A76A32196FEB7400C0F34F /* DPSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPSettingsTableViewController.m; sourceTree = "<group>"; };
+		C9A76A34196FEC4C00C0F34F /* DPSettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPSettingsCell.h; sourceTree = "<group>"; };
+		C9A76A35196FEC4C00C0F34F /* DPSettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPSettingsCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +144,7 @@
 		C9A769AB196FCF1C00C0F34F /* Depicture */ = {
 			isa = PBXGroup;
 			children = (
+				C9A76A37196FEC5000C0F34F /* DPSettingsCell */,
 				C9A76A24196FE0A600C0F34F /* DPFriendCell */,
 				C9A769DB196FD72900C0F34F /* DPViews */,
 				C9A769B4196FCF1C00C0F34F /* DPAppDelegate.h */,
@@ -185,6 +192,7 @@
 		C9A769DB196FD72900C0F34F /* DPViews */ = {
 			isa = PBXGroup;
 			children = (
+				C9A76A30196FEB5F00C0F34F /* DPSettingsTableViewController */,
 				C9A76A28196FE12400C0F34F /* DPCameraView */,
 				C9A769DC196FD73E00C0F34F /* DPFriendsTableViewController */,
 			);
@@ -216,6 +224,24 @@
 				C9A76A2A196FE18700C0F34F /* DPCameraView.m */,
 			);
 			name = DPCameraView;
+			sourceTree = "<group>";
+		};
+		C9A76A30196FEB5F00C0F34F /* DPSettingsTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9A76A31196FEB7400C0F34F /* DPSettingsTableViewController.h */,
+				C9A76A32196FEB7400C0F34F /* DPSettingsTableViewController.m */,
+			);
+			name = DPSettingsTableViewController;
+			sourceTree = "<group>";
+		};
+		C9A76A37196FEC5000C0F34F /* DPSettingsCell */ = {
+			isa = PBXGroup;
+			children = (
+				C9A76A34196FEC4C00C0F34F /* DPSettingsCell.h */,
+				C9A76A35196FEC4C00C0F34F /* DPSettingsCell.m */,
+			);
+			name = DPSettingsCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +345,8 @@
 				C9A769B2196FCF1C00C0F34F /* main.m in Sources */,
 				C9A769DF196FD77C00C0F34F /* DPFriendsTableViewController.m in Sources */,
 				C9A769E2196FDB5D00C0F34F /* DPMainViewController.m in Sources */,
+				C9A76A33196FEB7400C0F34F /* DPSettingsTableViewController.m in Sources */,
+				C9A76A36196FEC4C00C0F34F /* DPSettingsCell.m in Sources */,
 				C9A76A27196FE0CA00C0F34F /* DPFriendCell.m in Sources */,
 				C9A769DA196FD30800C0F34F /* DPUser.m in Sources */,
 				C9A769B9196FCF1C00C0F34F /* Depicture.xcdatamodeld in Sources */,

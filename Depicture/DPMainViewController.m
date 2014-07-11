@@ -14,7 +14,7 @@
 
 @implementation DPMainViewController
 
-@synthesize friendsTableViewController, cameraView, cameraOutput, cameraOutputView;
+@synthesize friendsTableViewController, cameraView, cameraOutput, cameraOutputView, settingsTableViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,9 +30,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    // SETTINGS VIEW CONTROLLER
+    // -> Added before to avoid a call to bringSubviewToFront
+    self.settingsTableViewController = [[DPSettingsTableViewController alloc] init];
+    [self.view addSubview:self.settingsTableViewController.view];
+    
     // FRIENDS TABLE VIEW CONTROLLER
     self.friendsTableViewController = [[DPFriendsTableViewController alloc] init];
     [self.view addSubview:self.friendsTableViewController.view];
+    
     
     // CAMERA VIEW
     self.cameraView = [[DPCameraView alloc]initWithFrame:self.view.frame];
@@ -47,6 +54,10 @@
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapWithGesture:)];
     tapRecognizer.numberOfTapsRequired = 1;
     [self.cameraView addGestureRecognizer:tapRecognizer];
+    
+    // PAN GESTURE RECOGNIZER
+    UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.cameraView addGestureRecognizer:panRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,10 +142,25 @@
 	 }];
 }
 
+#pragma gestures
+
 -(void)userDidTapWithGesture:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"USER DID TAP");
+    NSLog(@"USER DID TAP CAMERA VIEW");
     [self captureImage];
 }
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    
+    // @TODO: determine if self.view or self.cameraView (i.e., does the translation change if the target layer moves with the translation?)
+    CGPoint translation = [recognizer translationInView:self.view];
+    recognizer.view.center = CGPointMake(recognizer.view.center.x,
+                                         recognizer.view.center.y + translation.y);
+    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+    // UPDATE SUBVIEWS BELOW CAMERA VIEW
+    
+}
+
 
 @end
