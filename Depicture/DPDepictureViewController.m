@@ -15,9 +15,11 @@
 @implementation DPDepictureViewController
 
 @synthesize translation = _translation;
+@synthesize viewLocation;
 
 static DPDepictureViewController *_depictureViewController = nil;
 static CGFloat originalX;
+static CGRect originalFrame;
 
 
 +(DPDepictureViewController *)sharedDepictureViewController
@@ -34,10 +36,12 @@ static CGFloat originalX;
     if (self) {
         CGSize screenSize = [UIScreen mainScreen].bounds.size;
         // start position should be off screen right
-        self.view.frame = CGRectMake(screenSize.width,
+        originalX = screenSize.width;
+        originalFrame = CGRectMake(screenSize.width,
                                      self.view.frame.origin.y,
                                      screenSize.width,
                                      screenSize.height);
+        self.view.frame = originalFrame;
         [self.view setBackgroundColor:[UIColor blueColor]];
     }
     return self;
@@ -47,12 +51,10 @@ static CGFloat originalX;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    originalX = [UIScreen mainScreen].bounds.size.width;
 
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     panRecognizer.delegate = self;
     [self.view addGestureRecognizer:panRecognizer];
-    NSLog(@"ATTACHING HANDLER");
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,22 +76,23 @@ static CGFloat originalX;
 }
 
 
--(void)animateDepictureViewToRight
+-(void)moveDepictureViewToRightAnimated:(BOOL)animated
 {
+    if (!animated) {
+        self.view.frame = originalFrame;
+        return;
+    }
     POPSpringAnimation *anim = [self.view pop_animationForKey:@"animateDepictureView"];
     if (!anim) {
         anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
     }
-    anim.toValue = [NSValue valueWithCGRect:CGRectMake(originalX,
-                                                       self.view.frame.origin.y,
-                                                       self.view.frame.size.width,
-                                                       self.view.frame.size.height)];
+    anim.toValue = [NSValue valueWithCGRect:originalFrame];
     anim.delegate = self;
     anim.name = @"animateDepictureViewToRight";
     [self.view pop_addAnimation:anim forKey:@"animateDepictureView"];
 }
 
--(void)animateDepictureviewToMiddle
+-(void)moveDepictureViewToMiddleAnimated:(BOOL)animated
 {
     POPSpringAnimation *anim = [self.view pop_animationForKey:@"animateDepictureView"];
     if (!anim) {
@@ -109,9 +112,11 @@ static CGFloat originalX;
     if ([anim.name isEqualToString:@"animateDepictureViewToRight"]) {
         // @TODO: PAUSE
         NSLog(@"WOULD PAUSE DPExplodeView");
+        viewLocation = kDPDepictureViewLocationRight;
     } else if ([anim.name isEqualToString:@"animateDepictureViewToMiddle"]) {
         // @TODO: ANIMATE IN
         NSLog(@"WOULD PRESENT DEPICTURE");
+        viewLocation = kDPDepictureViewLocationMiddle;
     }
 }
 
@@ -127,9 +132,9 @@ static CGFloat originalX;
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         CGFloat velocity = [recognizer velocityInView:self.view].x;
         if (velocity < 0) {
-            [self animateDepictureviewToMiddle];
+            [self moveDepictureViewToMiddleAnimated:YES];
         } else {
-            [self animateDepictureViewToRight];
+            [self moveDepictureViewToRightAnimated:YES];
         }
     }
 }

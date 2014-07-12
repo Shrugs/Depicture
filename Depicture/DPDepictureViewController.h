@@ -12,10 +12,16 @@
 @interface DPDepictureViewController : DPExplodedViewController
 <POPAnimationDelegate, UIGestureRecognizerDelegate>
 
+typedef enum {
+    kDPDepictureViewLocationRight,
+    kDPDepictureViewLocationMiddle,
+} DPDepictureViewLocation;
+
 +(DPDepictureViewController *)sharedDepictureViewController;
--(void)animateDepictureViewToRight;
--(void)animateDepictureviewToMiddle;
+-(void)moveDepictureViewToRightAnimated:(BOOL)animated;
+-(void)moveDepictureViewToMiddleAnimated:(BOOL)animated;
 
 @property (nonatomic, assign) CGFloat translation;
+@property (nonatomic, assign) DPDepictureViewLocation viewLocation;
 
 @end

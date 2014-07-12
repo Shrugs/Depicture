@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DPDepictureViewController.h"
+#import <POP/POP.h>
 
 @interface DPFriendCell : UITableViewCell <UIGestureRecognizerDelegate>
+
+@property(nonatomic, strong) UIView *slideView;
 
 @end
