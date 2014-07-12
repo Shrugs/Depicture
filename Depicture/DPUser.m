@@ -12,24 +12,12 @@
 
 @synthesize username, identifier, friends;
 
-+(DPUser *) thisUser
-{
-    static DPUser *thisUserSingleton = nil;
-    if (thisUserSingleton == nil) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//        thisUserSingleton = [[self alloc] initWithIdentifier:[userDefaults objectForKey:@"identifier"] andUsername:[userDefaults objectForKey:@"username"]];
-        thisUserSingleton = [[self alloc] initWithIdentifier:@"+5046168294" andUsername:@"matt"];
-    }
-    return thisUserSingleton;
-}
-
 -(DPUser *) initWithIdentifier:(NSString *)iden andUsername:(NSString *)uname
 {
     self = [super init];
     if (self) {
         self.username = uname;
         self.identifier = iden;
-        self.friends = @[@"pf", @"shrugs", @"test"];
     }
     return self;
 }

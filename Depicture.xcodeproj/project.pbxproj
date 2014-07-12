@@ -10,6 +10,18 @@
 		930C078C9DEA409B9CDB12A7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E005AD91135E43FB8E26FFDF /* libPods.a */; };
 		C92E92AF1970F6DD0035E13A /* DPExplodedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92AE1970F6DD0035E13A /* DPExplodedViewController.m */; };
 		C92E92B31970F6FB0035E13A /* DPDepictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92B21970F6FB0035E13A /* DPDepictureViewController.m */; };
+		C92E92B619718C5E0035E13A /* DPDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92B519718C5E0035E13A /* DPDataManager.m */; };
+		C92E92BD197194A90035E13A /* DPDepicture.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92BC197194A90035E13A /* DPDepicture.m */; };
+		C92E92BF197199910035E13A /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92BE197199910035E13A /* Parse.framework */; };
+		C92E92C1197199C50035E13A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92C0197199C50035E13A /* AudioToolbox.framework */; };
+		C92E92C3197199CA0035E13A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92C2197199CA0035E13A /* CFNetwork.framework */; };
+		C92E92C5197199D40035E13A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92C4197199D40035E13A /* CoreLocation.framework */; };
+		C92E92C7197199DC0035E13A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92C6197199DC0035E13A /* libz.dylib */; };
+		C92E92C9197199E40035E13A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92C8197199E40035E13A /* MobileCoreServices.framework */; };
+		C92E92CB197199EC0035E13A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92CA197199EC0035E13A /* QuartzCore.framework */; };
+		C92E92CD197199F20035E13A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92CC197199F20035E13A /* Security.framework */; };
+		C92E92CF19719A010035E13A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92CE19719A010035E13A /* StoreKit.framework */; };
+		C92E92D119719A080035E13A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92D019719A080035E13A /* SystemConfiguration.framework */; };
 		C9A769A4196FCF1C00C0F34F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A3196FCF1C00C0F34F /* Foundation.framework */; };
 		C9A769A6196FCF1C00C0F34F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A5196FCF1C00C0F34F /* CoreGraphics.framework */; };
 		C9A769A8196FCF1C00C0F34F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A7196FCF1C00C0F34F /* UIKit.framework */; };
@@ -52,6 +64,20 @@
 		C92E92AE1970F6DD0035E13A /* DPExplodedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPExplodedViewController.m; sourceTree = "<group>"; };
 		C92E92B11970F6FB0035E13A /* DPDepictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDepictureViewController.h; sourceTree = "<group>"; };
 		C92E92B21970F6FB0035E13A /* DPDepictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPDepictureViewController.m; sourceTree = "<group>"; };
+		C92E92B419718C5E0035E13A /* DPDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDataManager.h; sourceTree = "<group>"; };
+		C92E92B519718C5E0035E13A /* DPDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPDataManager.m; sourceTree = "<group>"; };
+		C92E92BB197194A90035E13A /* DPDepicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDepicture.h; sourceTree = "<group>"; };
+		C92E92BC197194A90035E13A /* DPDepicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPDepicture.m; sourceTree = "<group>"; };
+		C92E92BE197199910035E13A /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		C92E92C0197199C50035E13A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C92E92C2197199CA0035E13A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C92E92C4197199D40035E13A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C92E92C6197199DC0035E13A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C92E92C8197199E40035E13A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		C92E92CA197199EC0035E13A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C92E92CC197199F20035E13A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C92E92CE19719A010035E13A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C92E92D019719A080035E13A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		C9A769A0196FCF1C00C0F34F /* Depicture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Depicture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A769A3196FCF1C00C0F34F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9A769A5196FCF1C00C0F34F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -94,12 +120,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92E92D119719A080035E13A /* SystemConfiguration.framework in Frameworks */,
+				C92E92CF19719A010035E13A /* StoreKit.framework in Frameworks */,
+				C92E92CD197199F20035E13A /* Security.framework in Frameworks */,
+				C92E92CB197199EC0035E13A /* QuartzCore.framework in Frameworks */,
+				C92E92C9197199E40035E13A /* MobileCoreServices.framework in Frameworks */,
+				C92E92C7197199DC0035E13A /* libz.dylib in Frameworks */,
+				C92E92C5197199D40035E13A /* CoreLocation.framework in Frameworks */,
+				C92E92C3197199CA0035E13A /* CFNetwork.framework in Frameworks */,
+				C92E92C1197199C50035E13A /* AudioToolbox.framework in Frameworks */,
 				C9A76A2F196FE35500C0F34F /* AVFoundation.framework in Frameworks */,
 				C9A76A2D196FE34C00C0F34F /* CoreVideo.framework in Frameworks */,
 				C9A769A6196FCF1C00C0F34F /* CoreGraphics.framework in Frameworks */,
 				C9A769AA196FCF1C00C0F34F /* CoreData.framework in Frameworks */,
 				C9A769A8196FCF1C00C0F34F /* UIKit.framework in Frameworks */,
 				C9A769A4196FCF1C00C0F34F /* Foundation.framework in Frameworks */,
+				C92E92BF197199910035E13A /* Parse.framework in Frameworks */,
 				930C078C9DEA409B9CDB12A7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -136,6 +172,43 @@
 			name = DPDepictureViewController;
 			sourceTree = "<group>";
 		};
+		C92E92B7197194710035E13A /* DPData */ = {
+			isa = PBXGroup;
+			children = (
+				C92E92BA1971948E0035E13A /* DPUser */,
+				C92E92B9197194820035E13A /* DPDepicture */,
+				C92E92B8197194790035E13A /* DPDataManager */,
+			);
+			name = DPData;
+			sourceTree = "<group>";
+		};
+		C92E92B8197194790035E13A /* DPDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				C92E92B419718C5E0035E13A /* DPDataManager.h */,
+				C92E92B519718C5E0035E13A /* DPDataManager.m */,
+			);
+			name = DPDataManager;
+			sourceTree = "<group>";
+		};
+		C92E92B9197194820035E13A /* DPDepicture */ = {
+			isa = PBXGroup;
+			children = (
+				C92E92BB197194A90035E13A /* DPDepicture.h */,
+				C92E92BC197194A90035E13A /* DPDepicture.m */,
+			);
+			name = DPDepicture;
+			sourceTree = "<group>";
+		};
+		C92E92BA1971948E0035E13A /* DPUser */ = {
+			isa = PBXGroup;
+			children = (
+				C9A769D8196FD30800C0F34F /* DPUser.h */,
+				C9A769D9196FD30800C0F34F /* DPUser.m */,
+			);
+			name = DPUser;
+			sourceTree = "<group>";
+		};
 		C9A76997196FCF1C00C0F34F = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +232,16 @@
 		C9A769A2196FCF1C00C0F34F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C92E92D019719A080035E13A /* SystemConfiguration.framework */,
+				C92E92CE19719A010035E13A /* StoreKit.framework */,
+				C92E92CC197199F20035E13A /* Security.framework */,
+				C92E92CA197199EC0035E13A /* QuartzCore.framework */,
+				C92E92C8197199E40035E13A /* MobileCoreServices.framework */,
+				C92E92C6197199DC0035E13A /* libz.dylib */,
+				C92E92C4197199D40035E13A /* CoreLocation.framework */,
+				C92E92C2197199CA0035E13A /* CFNetwork.framework */,
+				C92E92C0197199C50035E13A /* AudioToolbox.framework */,
+				C92E92BE197199910035E13A /* Parse.framework */,
 				C9A76A2E196FE35500C0F34F /* AVFoundation.framework */,
 				C9A76A2C196FE34C00C0F34F /* CoreVideo.framework */,
 				C9A769A3196FCF1C00C0F34F /* Foundation.framework */,
@@ -182,10 +265,9 @@
 				C9A769BA196FCF1C00C0F34F /* Images.xcassets */,
 				C9A769B7196FCF1C00C0F34F /* Depicture.xcdatamodeld */,
 				C9A769AC196FCF1C00C0F34F /* Supporting Files */,
-				C9A769D8196FD30800C0F34F /* DPUser.h */,
-				C9A769D9196FD30800C0F34F /* DPUser.m */,
 				C9A769E0196FDB5D00C0F34F /* DPMainViewController.h */,
 				C9A769E1196FDB5D00C0F34F /* DPMainViewController.m */,
+				C92E92B7197194710035E13A /* DPData */,
 			);
 			path = Depicture;
 			sourceTree = "<group>";
@@ -326,6 +408,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Shrugs;
 				TargetAttributes = {
+					C9A7699F196FCF1C00C0F34F = {
+						DevelopmentTeam = 8DZG85JJAZ;
+					};
 					C9A769BF196FCF1C00C0F34F = {
 						TestTargetID = C9A7699F196FCF1C00C0F34F;
 					};
@@ -417,6 +502,8 @@
 				C9A76A33196FEB7400C0F34F /* DPSettingsTableViewController.m in Sources */,
 				C9A76A36196FEC4C00C0F34F /* DPSettingsCell.m in Sources */,
 				C9A76A27196FE0CA00C0F34F /* DPFriendCell.m in Sources */,
+				C92E92B619718C5E0035E13A /* DPDataManager.m in Sources */,
+				C92E92BD197194A90035E13A /* DPDepicture.m in Sources */,
 				C9A769DA196FD30800C0F34F /* DPUser.m in Sources */,
 				C9A769B9196FCF1C00C0F34F /* Depicture.xcdatamodeld in Sources */,
 			);
@@ -476,7 +563,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Condon (KK7926GMRW)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -494,6 +582,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "DC3B1097-EF69-4B34-A7FE-A7D74F34A5E3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -514,7 +603,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Condon (KK7926GMRW)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -525,6 +615,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PROVISIONING_PROFILE = "DC3B1097-EF69-4B34-A7FE-A7D74F34A5E3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -536,10 +627,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Depicture/Depicture-Prefix.pch";
 				INFOPLIST_FILE = "Depicture/Depicture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "DC3B1097-EF69-4B34-A7FE-A7D74F34A5E3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -550,10 +648,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Matthew Condon (KK7926GMRW)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Depicture/Depicture-Prefix.pch";
 				INFOPLIST_FILE = "Depicture/Depicture-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "DC3B1097-EF69-4B34-A7FE-A7D74F34A5E3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

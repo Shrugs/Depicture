@@ -200,16 +200,26 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     }
 
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (originalY == 0) {
-            CGFloat velocity = [recognizer velocityInView:self.view].y;
-            if (velocity < 0) {
-                // is negative, up
-                [self animateCameraViewToTop];
-            } else {
-                [self animateCameraViewToBottom];
+        CGFloat delta = fabsf(originalY - self.cameraView.frame.origin.y);
+        CGFloat velocity = [recognizer velocityInView:self.view].y;
+
+        // @TODO: remove magic numbers and standardize thresholds
+        if (delta > 200 || fabsf(velocity) > 200) {
+            if (cameraViewLocation == kDPCameraViewLocationMiddle) {
+                if (velocity < 0) {
+                    // is negative, up
+                    [self animateCameraViewToTop];
+                } else {
+                    [self animateCameraViewToBottom];
+                }
+            } else if (cameraViewLocation == kDPCameraViewLocationTop) {
+                [self animateCameraViewToMiddle];
+            } else if (cameraViewLocation == kDPCameraViewLocationBottom) {
+                [self animateCameraViewToMiddle];
             }
         } else {
-            [self animateCameraViewToMiddle];
+            // animate back to current defined location
+            [self animateCameraViewToCurrentLocation];
         }
     }
     
@@ -262,6 +272,23 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     anim.delegate = self;
     anim.name = @"animateCameraViewToBottom";
     [self.cameraView pop_addAnimation:anim forKey:@"animateCameraView"];
+}
+
+-(void)animateCameraViewToCurrentLocation
+{
+    switch (cameraViewLocation) {
+        case kDPCameraViewLocationTop:
+            [self animateCameraViewToTop];
+            break;
+        case kDPCameraViewLocationMiddle:
+            [self animateCameraViewToMiddle];
+            break;
+        case kDPCameraViewLocationBottom:
+            [self animateCameraViewToBottom];
+
+        default:
+            [self animateCameraViewToMiddle];
+    }
 }
 
 - (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished

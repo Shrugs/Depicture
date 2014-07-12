@@ -24,13 +24,20 @@ static int yOffset = 100;
 {
     self = [super initWithStyle:style];
     if (self) {
+
+        // START LOADING USERS
+        [[DPDataManager sharedDataManager] getUserFriendsWithBlock:^(NSArray *friends, NSError *error) {
+            [self.tableView reloadData];
+            NSLog(@"%@", self.tableView);
+        }];
+
         // REFRESH CONTROL
         UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
         [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
         [self setRefreshControl:refreshControl];
         
         // LOAD USER
-        self.thisUser = [DPUser thisUser];
+        thisUser = [[DPDataManager sharedDataManager] thisUser];
         
         // CONFIGURE CELL
         [self.tableView registerClass:[DPFriendCell class] forCellReuseIdentifier:cellIdentifier];
@@ -44,6 +51,7 @@ static int yOffset = 100;
 -(void)refresh:(id)sender
 {
     NSLog(@"SHOULD REFRESH");
+    [self.tableView reloadData];
     // End Refreshing
     [(UIRefreshControl *)sender endRefreshing];
 }
@@ -51,7 +59,7 @@ static int yOffset = 100;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,7 +79,7 @@ static int yOffset = 100;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // return number of friends
-    return [self.thisUser.friends count];
+    return [thisUser.friends count];
 }
 
 
@@ -79,7 +87,7 @@ static int yOffset = 100;
 {
     DPFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = [self.thisUser.friends objectAtIndex:indexPath.row];
+    cell.textLabel.text = [(DPUser *)[thisUser.friends objectAtIndex:indexPath.row] username];
     
     return cell;
 }

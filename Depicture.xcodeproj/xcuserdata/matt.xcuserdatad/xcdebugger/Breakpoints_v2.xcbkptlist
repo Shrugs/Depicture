@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Depicture/DPUser.m"
-            timestampString = "426762132.412383"
+            timestampString = "426877106.114257"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "-initWithIdentifier:andUsername:"
             landmarkType = "5">
          </BreakpointContent>

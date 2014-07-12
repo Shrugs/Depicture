@@ -8,6 +8,7 @@
 
 #import "DPAppDelegate.h"
 #import "DPMainViewController.h"
+#import <Parse/Parse.h>
 
 @implementation DPAppDelegate
 
@@ -19,12 +20,21 @@ static DPMainViewController *mainViewController = nil;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    [Parse setApplicationId:@"PWcdjgfi7obgrIbKLZtAh5jqlt0D6EmlMWzqh17B"
+                  clientKey:@"FzXR9BsPNWoSyw9XMzTbkxBKFkO97gJfTwShFoeJ"];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     mainViewController = [[DPMainViewController alloc] init];
     self.window.rootViewController = mainViewController;
     [self.window makeKeyAndVisible];
+
+    // @TODO: Present a modal explaining why before asking for permissions
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+     UIRemoteNotificationTypeAlert|
+     UIRemoteNotificationTypeSound];
     return YES;
 }
 
@@ -154,8 +164,22 @@ static DPMainViewController *mainViewController = nil;
 #pragma Handle Events
 -(void)directDepictureToUsername:(NSString *)username
 {
-    NSLog(@"WOULD TRIGGER DIRECT DEPICTURE");
+    // @TODO: actually somehow set who to send it to after taking the picture
     [mainViewController animateCameraViewToMiddle];
+}
+
+#pragma Parse
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    NSLog(@"%@", userInfo);
+    [PFPush handlePush:userInfo];
 }
 
 @end

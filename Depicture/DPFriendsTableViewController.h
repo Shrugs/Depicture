@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DPUser.h"
 #import "DPFriendCell.h"
+#import "DPDataManager.h"
 
 @interface DPFriendsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
