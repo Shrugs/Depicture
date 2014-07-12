@@ -15,12 +15,14 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+static DPMainViewController *mainViewController = nil;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
-    DPMainViewController *mainViewController = [[DPMainViewController alloc] init];
+    mainViewController = [[DPMainViewController alloc] init];
     self.window.rootViewController = mainViewController;
     [self.window makeKeyAndVisible];
     return YES;
@@ -147,6 +149,13 @@
 - (NSURL *)applicationDocumentsDirectory
 {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+#pragma Handle Events
+-(void)directDepictureToUsername:(NSString *)username
+{
+    NSLog(@"WOULD TRIGGER DIRECT DEPICTURE");
+    [mainViewController animateCameraViewToMiddle];
 }
 
 @end

@@ -22,4 +22,7 @@
 @property(nonatomic, strong) UIImageView *cameraOutputView;
 @property (nonatomic, strong) DPSettingsTableViewController *settingsTableViewController;
 
+-(void)animateCameraViewToTop;
+-(void)animateCameraViewToMiddle;
+-(void)animateCameraViewToBottom;
 @end

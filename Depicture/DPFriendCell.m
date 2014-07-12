@@ -10,7 +10,7 @@
 
 @implementation DPFriendCell
 
-@synthesize slideView;
+@synthesize slideView, username;
 
 static DPDepictureViewController *depictureViewController = nil;
 static CGRect slideViewHome;
@@ -21,6 +21,8 @@ static CGRect slideViewHome;
     if (self) {
         // Initialization code
 
+        depictureViewController = [DPDepictureViewController sharedDepictureViewController];
+
         // create panRecognizer and tap/doubletap recognizers
         // create views for sending a direct Depicture
         // in panrecognizer, grab reference to the DPDepictureView singleton and instantiate with data
@@ -28,6 +30,16 @@ static CGRect slideViewHome;
 
         UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
         [self addGestureRecognizer:panRecognizer];
+
+        UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        singleTapRecognizer.numberOfTapsRequired = 1;
+        [self addGestureRecognizer:singleTapRecognizer];
+
+        UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+        doubleTapRecognizer.numberOfTapsRequired = 2;
+        [self addGestureRecognizer:doubleTapRecognizer];
+
+        [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
 
         slideView = [[UIView alloc] initWithFrame:self.frame];
         slideViewHome = CGRectMake(-1*slideView.frame.size.width,
@@ -38,7 +50,7 @@ static CGRect slideViewHome;
         slideView.backgroundColor = [UIColor purpleColor];
 
         UILabel *sendDepictureLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, slideView.frame.size.width, slideView.frame.size.height)];
-        sendDepictureLabel.text = @"Send Depicture > ";
+        sendDepictureLabel.text = @"Send Depicture >";
         sendDepictureLabel.textAlignment = NSTextAlignmentRight;
         [slideView addSubview:sendDepictureLabel];
 
@@ -52,10 +64,12 @@ static CGRect slideViewHome;
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+-(void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    // Configure the view for the selected state
+    // empty to prevent default highlighting, which is ugly af
 }
+
+#pragma handlers
 
 -(void)handlePan:(UIPanGestureRecognizer *)recognizer
 {
@@ -64,7 +78,6 @@ static CGRect slideViewHome;
         originalX = [recognizer locationInView:recognizer.view].x;
     }
 
-    depictureViewController = [DPDepictureViewController sharedDepictureViewController];
     CGFloat translation = [recognizer translationInView:self].x;
     
     // animate as you swipe
@@ -82,7 +95,7 @@ static CGRect slideViewHome;
             // enough of a swipe left to animate depicture view
             [depictureViewController moveDepictureViewToMiddleAnimated:YES];
         } else if (velocity > 1000 || (currX - originalX) > 100) {
-            NSLog(@"TRIGGER DIRECT DEPICTURE");
+            [self triggerDirectDepicture];
         } else if ((originalX - currX) > 0) {
             //reset depicture view animated
             [depictureViewController moveDepictureViewToRightAnimated:YES];
@@ -92,6 +105,16 @@ static CGRect slideViewHome;
         // reset the slideView regardless
         [self animateSlideViewToLeft];
     }
+}
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    [depictureViewController moveDepictureViewToMiddleAnimated:YES];
+}
+
+-(void)handleDoubleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self triggerDirectDepicture];
 }
 
 -(void)setSlideViewTranslation:(CGFloat)translation
@@ -112,6 +135,17 @@ static CGRect slideViewHome;
     anim.name = @"animateSlideViewToLeft";
     [slideView pop_addAnimation:anim forKey:@"animateSlideView"];
     // @TODO: trigger direct depicture taking
+}
+
+-(void)triggerDirectDepicture
+{
+    [(DPAppDelegate *)[[UIApplication sharedApplication] delegate] directDepictureToUsername:username];
+}
+
+#pragma UIGestureRecognizerDelegate methods
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
 }
 
 @end
