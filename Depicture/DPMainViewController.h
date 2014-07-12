@@ -12,6 +12,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "DPSettingsTableViewController.h"
 #import <POP/POP.h>
+#import "DPDepictureViewController.h"
 
 @interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate, POPAnimationDelegate>
 

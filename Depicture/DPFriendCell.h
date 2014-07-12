@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DPDepictureViewController.h"
 
-@interface DPFriendCell : UITableViewCell
+@interface DPFriendCell : UITableViewCell <UIGestureRecognizerDelegate>
 
 @end

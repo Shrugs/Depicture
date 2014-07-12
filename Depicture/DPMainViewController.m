@@ -44,7 +44,6 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     self.friendsTableViewController = [[DPFriendsTableViewController alloc] init];
     [self.view addSubview:self.friendsTableViewController.view];
     
-    
     // CAMERA VIEW
     self.cameraView = [[DPCameraView alloc]initWithFrame:self.view.frame];
     [self.view addSubview:self.cameraView];
@@ -52,6 +51,10 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     self.cameraOutputView = [[UIImageView alloc] initWithFrame:self.cameraView.frame];
     
     [self startCamera];
+
+    // DEPICTURE VIEW
+    DPDepictureViewController *dpvc = [DPDepictureViewController sharedDepictureViewController];
+    [self.view addSubview:dpvc.view];
     
     // TAP GESTURE RECOGNIZER
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTapWithGesture:)];
