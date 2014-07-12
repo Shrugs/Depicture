@@ -10,4 +10,10 @@
 
 @interface DPCameraView : UIView
 
+typedef enum {
+    kDPCameraViewLocationTop,
+    kDPCameraViewLocationMiddle,
+    kDPCameraViewLocationBottom
+} DPCameraViewLocation;
+
 @end

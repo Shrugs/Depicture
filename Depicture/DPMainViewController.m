@@ -16,6 +16,10 @@
 
 @synthesize friendsTableViewController, cameraView, cameraOutput, cameraOutputView, settingsTableViewController;
 
+static int yOffset = 100;
+static BOOL friendsInView = YES;
+static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -43,7 +47,6 @@
     
     // CAMERA VIEW
     self.cameraView = [[DPCameraView alloc]initWithFrame:self.view.frame];
-    self.cameraView.backgroundColor = [UIColor redColor];
     [self.view addSubview:self.cameraView];
     
     self.cameraOutputView = [[UIImageView alloc] initWithFrame:self.cameraView.frame];
@@ -142,16 +145,43 @@
 	 }];
 }
 
+#pragma display stack
+
+-(void)bringFriendsToFront
+{
+    // @TODO: Fade and Scale in view
+    [self.view insertSubview:self.friendsTableViewController.view aboveSubview:self.settingsTableViewController.view];\
+    friendsInView = NO;
+}
+
+-(void)bringSettingsToFront
+{
+    // @TODO: Fade and Scale in view
+    [self.view insertSubview:self.settingsTableViewController.view aboveSubview:self.friendsTableViewController.view];
+    friendsInView = YES;
+}
+
 #pragma gestures
 
 -(void)userDidTapWithGesture:(UITapGestureRecognizer *)sender
 {
-    NSLog(@"USER DID TAP CAMERA VIEW");
-    [self captureImage];
+    switch (cameraViewLocation) {
+        case kDPCameraViewLocationTop:
+        case kDPCameraViewLocationBottom:
+            [self animateCameraViewToMiddle];
+            break;
+        case kDPCameraViewLocationMiddle:
+        default:
+            [self captureImage];
+    }
 }
 
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer {
-    
+    static int originalY = 0;
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        originalY = self.cameraView.frame.origin.y;
+    }
+
     // @TODO: determine if self.view or self.cameraView (i.e., does the translation change if the target layer moves with the translation?)
     CGPoint translation = [recognizer translationInView:self.view];
     recognizer.view.center = CGPointMake(recognizer.view.center.x,
@@ -160,14 +190,98 @@
     
     // UPDATE SUBVIEWS BELOW CAMERA VIEW
     
-    if (recognizer.view.frame.origin.y <= self.view.frame.origin.y) {
-        // @TODO: only do this once depending on which view is on top - boolean
-        [self.view insertSubview:self.settingsTableViewController.view aboveSubview:self.friendsTableViewController.view];
-    } else {
-        [self.view insertSubview:self.friendsTableViewController.view aboveSubview:self.settingsTableViewController.view];
+    if (friendsInView && recognizer.view.frame.origin.y < self.view.frame.origin.y) {
+        [self bringFriendsToFront];
+    } else if (!friendsInView && recognizer.view.frame.origin.y > self.view.frame.origin.y) {
+        [self bringSettingsToFront];
+    }
+
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (originalY == 0) {
+            CGFloat velocity = [recognizer velocityInView:self.view].y;
+            if (velocity < 0) {
+                // is negative, up
+                [self animateCameraViewToTop];
+            } else {
+                [self animateCameraViewToBottom];
+            }
+        } else {
+            [self animateCameraViewToMiddle];
+        }
     }
     
 }
 
+#pragma animations
+
+-(void)animateCameraViewToTop
+{
+    [self bringSettingsToFront];
+    POPSpringAnimation *anim = [self.cameraView pop_animationForKey:@"animateCameraView"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    }
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(self.cameraView.frame.origin.x,
+                                -1.*(self.cameraView.frame.size.height-yOffset),
+                                self.cameraView.frame.size.width,
+                                self.cameraView.frame.size.height)];
+    anim.delegate = self;
+    anim.name = @"animateCameraViewToTop";
+    [self.cameraView pop_addAnimation:anim forKey:@"animateCameraView"];
+}
+
+-(void)animateCameraViewToMiddle
+{
+    POPSpringAnimation *anim = [self.cameraView pop_animationForKey:@"animateCameraView"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    }
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(self.cameraView.frame.origin.x,
+                                                       0,
+                                                       self.cameraView.frame.size.width,
+                                                       self.cameraView.frame.size.height)];
+    anim.delegate = self;
+    anim.name = @"animateCameraViewToMiddle";
+    [self.cameraView pop_addAnimation:anim forKey:@"animateCameraView"];
+}
+
+-(void)animateCameraViewToBottom
+{
+    [self bringFriendsToFront];
+    POPSpringAnimation *anim = [self.cameraView pop_animationForKey:@"animateCameraView"];
+    if (!anim) {
+        anim = [POPSpringAnimation animationWithPropertyNamed:kPOPViewFrame];
+    }
+    anim.toValue = [NSValue valueWithCGRect:CGRectMake(self.cameraView.frame.origin.x,
+                                                       self.cameraView.frame.size.height - yOffset,
+                                                       self.cameraView.frame.size.width,
+                                                       self.cameraView.frame.size.height)];
+    anim.delegate = self;
+    anim.name = @"animateCameraViewToBottom";
+    [self.cameraView pop_addAnimation:anim forKey:@"animateCameraView"];
+}
+
+- (void)pop_animationDidStop:(POPAnimation *)anim finished:(BOOL)finished
+{
+    if ([anim.name isEqualToString:@"animateCameraViewToTop"]) {
+        cameraViewLocation = kDPCameraViewLocationTop;
+    } else if ([anim.name isEqualToString:@"animateCameraViewToMiddle"]) {
+        cameraViewLocation = kDPCameraViewLocationMiddle;
+    } else if ([anim.name isEqualToString:@"animateCameraViewToBottom"]) {
+        cameraViewLocation = kDPCameraViewLocationBottom;
+    }
+}
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@
 #import "DPSettingsTableViewController.h"
 #import <POP/POP.h>
 
-@interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate, POPAnimationDelegate>
 
 @property (nonatomic, strong) DPFriendsTableViewController *friendsTableViewController;
 @property (nonatomic, strong) DPCameraView *cameraView;
