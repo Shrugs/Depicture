@@ -8,21 +8,31 @@
 
 #import <UIKit/UIKit.h>
 #import "DPFriendsTableViewController.h"
-#import "DPCameraView.h"
-#import <AVFoundation/AVFoundation.h>
 #import "DPSettingsTableViewController.h"
 #import <POP/POP.h>
 #import "DPDepictureViewController.h"
+#import "DPDepicturePreviewView.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface DPMainViewController : UIViewController <UIGestureRecognizerDelegate, POPAnimationDelegate>
 
-@property (nonatomic, strong) DPFriendsTableViewController *friendsTableViewController;
-@property (nonatomic, strong) DPCameraView *cameraView;
+typedef enum {
+    kDPCameraViewLocationTop,
+    kDPCameraViewLocationMiddle,
+    kDPCameraViewLocationBottom,
+} DPCameraViewLocation;
+
+@property(nonatomic, strong) DPDepicturePreviewView *cameraOutputView;
 @property (nonatomic, strong) AVCaptureStillImageOutput *cameraOutput;
-@property(nonatomic, strong) UIImageView *cameraOutputView;
+
+@property (nonatomic, strong) DPFriendsTableViewController *friendsTableViewController;
+@property (nonatomic, strong) UIView *cameraView;
 @property (nonatomic, strong) DPSettingsTableViewController *settingsTableViewController;
 
 -(void)animateCameraViewToTop;
 -(void)animateCameraViewToMiddle;
 -(void)animateCameraViewToBottom;
+
+-(void)captureImage;
+-(void)startCamera;
 @end

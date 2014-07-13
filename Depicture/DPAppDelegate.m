@@ -165,6 +165,7 @@ static DPMainViewController *mainViewController = nil;
 -(void)directDepictureToUsername:(NSString *)username
 {
     // @TODO: actually somehow set who to send it to after taking the picture
+    [[DPDataManager sharedDataManager] setFocusedUserName:username];
     [mainViewController animateCameraViewToMiddle];
 }
 

@@ -28,7 +28,6 @@ static int yOffset = 100;
         // START LOADING USERS
         [[DPDataManager sharedDataManager] getUserFriendsWithBlock:^(NSArray *friends, NSError *error) {
             [self.tableView reloadData];
-            NSLog(@"%@", self.tableView);
         }];
 
         // REFRESH CONTROL
@@ -50,7 +49,6 @@ static int yOffset = 100;
 
 -(void)refresh:(id)sender
 {
-    NSLog(@"SHOULD REFRESH");
     [self.tableView reloadData];
     // End Refreshing
     [(UIRefreshControl *)sender endRefreshing];

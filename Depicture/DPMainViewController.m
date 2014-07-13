@@ -14,7 +14,11 @@
 
 @implementation DPMainViewController
 
-@synthesize friendsTableViewController, cameraView, cameraOutput, cameraOutputView, settingsTableViewController;
+@synthesize friendsTableViewController,
+            cameraView,
+            settingsTableViewController,
+            cameraOutputView,
+            cameraOutput;
 
 static int yOffset = 100;
 static BOOL friendsInView = YES;
@@ -32,8 +36,6 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     
     // SETTINGS VIEW CONTROLLER
     // -> Added before to avoid a call to bringSubviewToFront
@@ -45,12 +47,7 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     [self.view addSubview:self.friendsTableViewController.view];
     
     // CAMERA VIEW
-    self.cameraView = [[DPCameraView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:self.cameraView];
-    
-    self.cameraOutputView = [[UIImageView alloc] initWithFrame:self.cameraView.frame];
-    
-    [self startCamera];
+    self.cameraView = [[UIView alloc] initWithFrame:self.view.frame];
 
     // DEPICTURE VIEW
     DPDepictureViewController *dpvc = [DPDepictureViewController sharedDepictureViewController];
@@ -64,6 +61,11 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     // PAN GESTURE RECOGNIZER
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     [self.cameraView addGestureRecognizer:panRecognizer];
+
+    self.cameraOutputView = [[DPDepicturePreviewView alloc] initWithFrame:self.view.frame];
+    [self.cameraView addSubview:self.cameraOutputView];
+    [self.view addSubview:self.cameraView];
+    [self startCamera];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,77 +85,12 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
 }
 */
 
-#pragma camera
--(void)startCamera
-{
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-	session.sessionPreset = AVCaptureSessionPresetHigh;
-	
-	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-	
-	captureVideoPreviewLayer.frame = self.cameraView.frame;
-	[self.cameraView.layer addSublayer:captureVideoPreviewLayer];
-	
-	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-	
-	NSError *error = nil;
-	AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-	if (!input) {
-		// Handle the error appropriately.
-		NSLog(@"ERROR: trying to open camera: %@", error);
-	}
-	[session addInput:input];
-    
-    self.cameraOutput = [[AVCaptureStillImageOutput alloc] init];
-    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
-    [self.cameraOutput setOutputSettings:outputSettings];
-    
-    [session addOutput:self.cameraOutput];
-	
-	[session startRunning];
-}
-
--(void)captureImage
-{
-    AVCaptureConnection *videoConnection = nil;
-	for (AVCaptureConnection *connection in cameraOutput.connections) {
-		for (AVCaptureInputPort *port in [connection inputPorts]) {
-			if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
-				videoConnection = connection;
-				break;
-			}
-		}
-		if (videoConnection) {
-            break;
-        }
-	}
-	
-	[cameraOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error)
-     {
-//		 CFDictionaryRef exifAttachments = CMGetAttachment( imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
-//		 if (exifAttachments)
-//		 {
-//             // Do something with the attachments.
-//             NSLog(@"attachements: %@", exifAttachments);
-//		 }
-//         else
-//             NSLog(@"no attachments");
-         
-         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-         UIImage *image = [[UIImage alloc] initWithData:imageData];
-         
-         self.cameraOutputView.image = image;
-         [self.cameraView addSubview:self.cameraOutputView];
-         [self.view bringSubviewToFront:self.cameraOutputView];
-	 }];
-}
-
 #pragma display stack
 
 -(void)bringFriendsToFront
 {
     // @TODO: Fade and Scale in view
-    [self.view insertSubview:self.friendsTableViewController.view aboveSubview:self.settingsTableViewController.view];\
+    [self.view insertSubview:self.friendsTableViewController.view aboveSubview:self.settingsTableViewController.view];
     friendsInView = NO;
 }
 
@@ -300,6 +237,70 @@ static DPCameraViewLocation cameraViewLocation = kDPCameraViewLocationMiddle;
     } else if ([anim.name isEqualToString:@"animateCameraViewToBottom"]) {
         cameraViewLocation = kDPCameraViewLocationBottom;
     }
+}
+
+#pragma camera
+-(void)startCamera
+{
+    AVCaptureSession *session = [[AVCaptureSession alloc] init];
+	session.sessionPreset = AVCaptureSessionPresetHigh;
+
+	AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+
+	captureVideoPreviewLayer.frame = self.cameraView.frame;
+	[self.cameraView.layer addSublayer:captureVideoPreviewLayer];
+
+	AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+
+	NSError *error = nil;
+	AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+	if (!input) {
+		// Handle the error appropriately.
+		NSLog(@"ERROR: trying to open camera: %@", error);
+	}
+	[session addInput:input];
+
+    self.cameraOutput = [[AVCaptureStillImageOutput alloc] init];
+    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    [self.cameraOutput setOutputSettings:outputSettings];
+
+    [session addOutput:self.cameraOutput];
+
+	[session startRunning];
+}
+
+-(void)captureImage
+{
+    AVCaptureConnection *videoConnection = nil;
+	for (AVCaptureConnection *connection in self.cameraOutput.connections) {
+		for (AVCaptureInputPort *port in [connection inputPorts]) {
+			if ([[port mediaType] isEqual:AVMediaTypeVideo] ) {
+				videoConnection = connection;
+				break;
+			}
+		}
+		if (videoConnection) {
+            break;
+        }
+	}
+
+	[self.cameraOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error)
+     {
+         //		 CFDictionaryRef exifAttachments = CMGetAttachment( imageSampleBuffer, kCGImagePropertyExifDictionary, NULL);
+         //		 if (exifAttachments)
+         //		 {
+         //             // Do something with the attachments.
+         //             NSLog(@"attachements: %@", exifAttachments);
+         //		 }
+         //         else
+         //             NSLog(@"no attachments");
+
+         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+         UIImage *image = [[UIImage alloc] initWithData:imageData];
+
+         self.cameraOutputView.image = image;
+         [self.cameraView bringSubviewToFront:self.cameraOutputView];
+	 }];
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DPDataManager.h"
 
 @interface DPAppDelegate : UIResponder <UIApplicationDelegate>
 

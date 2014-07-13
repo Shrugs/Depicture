@@ -10,14 +10,13 @@
 
 @implementation DPUser
 
-@synthesize username, identifier, friends;
+@synthesize username, friends;
 
--(DPUser *) initWithIdentifier:(NSString *)iden andUsername:(NSString *)uname
+-(DPUser *) initWithUsername:(NSString *)uname
 {
     self = [super init];
     if (self) {
         self.username = uname;
-        self.identifier = iden;
     }
     return self;
 }

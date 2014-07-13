@@ -10,6 +10,7 @@
 #import "DPUser.h"
 #import "DPDepicture.h"
 #import <Parse/Parse.h>
+#import "MLIMGURUploader.h"
 
 @interface DPDataManager : NSObject
 
@@ -22,6 +23,8 @@
 -(void)getUserFriendsWithBlock:(void (^)(NSArray *friends,NSError *error))callback;
 
 @property (nonatomic, strong) DPUser *thisUser;
+@property (nonatomic, strong) DPUser *focusedUser;
+-(void)setFocusedUserName:(NSString *)username;
 
 -(void)createUserWithUsername:(NSString *)username andPhoneNumber:(NSString *)phoneNumber withBlock:(void (^)(BOOL succeeded, NSError *error))callback;
 -(void)logoutUser;

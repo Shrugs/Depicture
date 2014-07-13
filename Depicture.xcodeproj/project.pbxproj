@@ -22,6 +22,8 @@
 		C92E92CD197199F20035E13A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92CC197199F20035E13A /* Security.framework */; };
 		C92E92CF19719A010035E13A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92CE19719A010035E13A /* StoreKit.framework */; };
 		C92E92D119719A080035E13A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C92E92D019719A080035E13A /* SystemConfiguration.framework */; };
+		C92E92D41971DD0C0035E13A /* MLIMGURUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92D31971DD0C0035E13A /* MLIMGURUploader.m */; };
+		C92E92D91971DF3D0035E13A /* DPDepicturePreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = C92E92D81971DF3D0035E13A /* DPDepicturePreviewView.m */; };
 		C9A769A4196FCF1C00C0F34F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A3196FCF1C00C0F34F /* Foundation.framework */; };
 		C9A769A6196FCF1C00C0F34F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A5196FCF1C00C0F34F /* CoreGraphics.framework */; };
 		C9A769A8196FCF1C00C0F34F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A769A7196FCF1C00C0F34F /* UIKit.framework */; };
@@ -41,7 +43,6 @@
 		C9A769DF196FD77C00C0F34F /* DPFriendsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A769DE196FD77C00C0F34F /* DPFriendsTableViewController.m */; };
 		C9A769E2196FDB5D00C0F34F /* DPMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A769E1196FDB5D00C0F34F /* DPMainViewController.m */; };
 		C9A76A27196FE0CA00C0F34F /* DPFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A26196FE0CA00C0F34F /* DPFriendCell.m */; };
-		C9A76A2B196FE18700C0F34F /* DPCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A2A196FE18700C0F34F /* DPCameraView.m */; };
 		C9A76A2D196FE34C00C0F34F /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A76A2C196FE34C00C0F34F /* CoreVideo.framework */; };
 		C9A76A2F196FE35500C0F34F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A76A2E196FE35500C0F34F /* AVFoundation.framework */; };
 		C9A76A33196FEB7400C0F34F /* DPSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C9A76A32196FEB7400C0F34F /* DPSettingsTableViewController.m */; };
@@ -78,6 +79,10 @@
 		C92E92CC197199F20035E13A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C92E92CE19719A010035E13A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		C92E92D019719A080035E13A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C92E92D21971DD0C0035E13A /* MLIMGURUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLIMGURUploader.h; sourceTree = "<group>"; };
+		C92E92D31971DD0C0035E13A /* MLIMGURUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLIMGURUploader.m; sourceTree = "<group>"; };
+		C92E92D71971DF3D0035E13A /* DPDepicturePreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPDepicturePreviewView.h; sourceTree = "<group>"; };
+		C92E92D81971DF3D0035E13A /* DPDepicturePreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPDepicturePreviewView.m; sourceTree = "<group>"; };
 		C9A769A0196FCF1C00C0F34F /* Depicture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Depicture.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A769A3196FCF1C00C0F34F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C9A769A5196FCF1C00C0F34F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -104,8 +109,6 @@
 		C9A769E1196FDB5D00C0F34F /* DPMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPMainViewController.m; sourceTree = "<group>"; };
 		C9A76A25196FE0CA00C0F34F /* DPFriendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPFriendCell.h; sourceTree = "<group>"; };
 		C9A76A26196FE0CA00C0F34F /* DPFriendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPFriendCell.m; sourceTree = "<group>"; };
-		C9A76A29196FE18700C0F34F /* DPCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPCameraView.h; sourceTree = "<group>"; };
-		C9A76A2A196FE18700C0F34F /* DPCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPCameraView.m; sourceTree = "<group>"; };
 		C9A76A2C196FE34C00C0F34F /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		C9A76A2E196FE35500C0F34F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C9A76A31196FEB7400C0F34F /* DPSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPSettingsTableViewController.h; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 		C92E92B7197194710035E13A /* DPData */ = {
 			isa = PBXGroup;
 			children = (
+				C92E92D51971DD100035E13A /* MLIMGURUploader */,
 				C92E92BA1971948E0035E13A /* DPUser */,
 				C92E92B9197194820035E13A /* DPDepicture */,
 				C92E92B8197194790035E13A /* DPDataManager */,
@@ -207,6 +211,24 @@
 				C9A769D9196FD30800C0F34F /* DPUser.m */,
 			);
 			name = DPUser;
+			sourceTree = "<group>";
+		};
+		C92E92D51971DD100035E13A /* MLIMGURUploader */ = {
+			isa = PBXGroup;
+			children = (
+				C92E92D21971DD0C0035E13A /* MLIMGURUploader.h */,
+				C92E92D31971DD0C0035E13A /* MLIMGURUploader.m */,
+			);
+			name = MLIMGURUploader;
+			sourceTree = "<group>";
+		};
+		C92E92D61971DF2D0035E13A /* DPDepicturePreviewView */ = {
+			isa = PBXGroup;
+			children = (
+				C92E92D71971DF3D0035E13A /* DPDepicturePreviewView.h */,
+				C92E92D81971DF3D0035E13A /* DPDepicturePreviewView.m */,
+			);
+			name = DPDepicturePreviewView;
 			sourceTree = "<group>";
 		};
 		C9A76997196FCF1C00C0F34F = {
@@ -304,10 +326,10 @@
 		C9A769DB196FD72900C0F34F /* DPViews */ = {
 			isa = PBXGroup;
 			children = (
+				C92E92D61971DF2D0035E13A /* DPDepicturePreviewView */,
 				C92E92B01970F6E10035E13A /* DPDepictureViewController */,
 				C92E92AC1970F6BA0035E13A /* DPExplodedViewController */,
 				C9A76A30196FEB5F00C0F34F /* DPSettingsTableViewController */,
-				C9A76A28196FE12400C0F34F /* DPCameraView */,
 				C9A769DC196FD73E00C0F34F /* DPFriendsTableViewController */,
 			);
 			name = DPViews;
@@ -329,15 +351,6 @@
 				C9A76A26196FE0CA00C0F34F /* DPFriendCell.m */,
 			);
 			name = DPFriendCell;
-			sourceTree = "<group>";
-		};
-		C9A76A28196FE12400C0F34F /* DPCameraView */ = {
-			isa = PBXGroup;
-			children = (
-				C9A76A29196FE18700C0F34F /* DPCameraView.h */,
-				C9A76A2A196FE18700C0F34F /* DPCameraView.m */,
-			);
-			name = DPCameraView;
 			sourceTree = "<group>";
 		};
 		C9A76A30196FEB5F00C0F34F /* DPSettingsTableViewController */ = {
@@ -493,7 +506,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A769B6196FCF1C00C0F34F /* DPAppDelegate.m in Sources */,
-				C9A76A2B196FE18700C0F34F /* DPCameraView.m in Sources */,
 				C92E92AF1970F6DD0035E13A /* DPExplodedViewController.m in Sources */,
 				C9A769B2196FCF1C00C0F34F /* main.m in Sources */,
 				C9A769DF196FD77C00C0F34F /* DPFriendsTableViewController.m in Sources */,
@@ -501,11 +513,13 @@
 				C92E92B31970F6FB0035E13A /* DPDepictureViewController.m in Sources */,
 				C9A76A33196FEB7400C0F34F /* DPSettingsTableViewController.m in Sources */,
 				C9A76A36196FEC4C00C0F34F /* DPSettingsCell.m in Sources */,
+				C92E92D91971DF3D0035E13A /* DPDepicturePreviewView.m in Sources */,
 				C9A76A27196FE0CA00C0F34F /* DPFriendCell.m in Sources */,
 				C92E92B619718C5E0035E13A /* DPDataManager.m in Sources */,
 				C92E92BD197194A90035E13A /* DPDepicture.m in Sources */,
 				C9A769DA196FD30800C0F34F /* DPUser.m in Sources */,
 				C9A769B9196FCF1C00C0F34F /* Depicture.xcdatamodeld in Sources */,
+				C92E92D41971DD0C0035E13A /* MLIMGURUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

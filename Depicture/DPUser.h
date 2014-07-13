@@ -10,10 +10,9 @@
 
 @interface DPUser : NSObject
 
--(DPUser *) initWithIdentifier:(NSString *)iden andUsername:(NSString *)uname;
+-(DPUser *) initWithUsername:(NSString *)uname;
 
 @property (nonatomic, strong) NSString *username;
-@property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSArray *friends;
 
 @end
